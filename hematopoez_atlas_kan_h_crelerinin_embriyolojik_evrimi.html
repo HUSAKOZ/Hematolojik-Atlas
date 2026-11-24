@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hematopoez Atlası: Tüm Kan Hücrelerinin Embriyolojik Evrimi</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
+            serif: ['Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
+          },
+          boxShadow: {
+            'gold-glow': '0 0 0 2px rgba(245, 158, 11, 0.75), 0 0 18px rgba(245, 158, 11, 0.45)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Inter Font (Güvenli sistem fontu yedekli) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Özel kaydırma çubuğu ve yumuşak geçişler */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(148, 163, 184, 0.45);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(100, 116, 139, 0.7);
+    }
+
+    /* Mitoz sınırı vurgu animasyonu */
+    @keyframes pulseGold {
+      0%, 100% {
+        box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.85), 0 0 14px rgba(245, 158, 11, 0.45);
+      }
+      50% {
+        box-shadow: 0 0 0 3px rgba(251, 191, 36, 1), 0 0 24px rgba(245, 158, 11, 0.75);
+      }
+    }
+    .mitoz-highlight-active {
+      animation: pulseGold 1.8s infinite ease-in-out;
+      transform: scale(1.04);
+      z-index: 10;
+    }
+    .mitoz-dimmed {
+      opacity: 0.42;
+      filter: saturate(0.5);
+    }
+
+    /* Yan panel kayma geçişi */
+    .drawer-backdrop {
+      transition: opacity 0.25s ease;
+    }
+    .drawer-panel {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased transition-colors duration-200 selection:bg-amber-200 selection:text-slate-900 dark:selection:bg-amber-500/30 dark:selection:text-amber-200">
+
+  <!-- ===================================================================== -->
+  <!-- 1. ÜST BAŞLIK VE ÖZET ŞERİDİ                                          -->
+  <!-- ===================================================================== -->
+  <header class="sticky top-0 z-30 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <!-- Başlık ve Akademik Etiket -->
+        <div class="flex items-start gap-3.5">
+          <div class="shrink-0 w-11 h-11 rounded-2xl bg-gradient-to-br from-rose-600 via-orange-500 to-indigo-600 flex items-center justify-center text-white shadow-md">
+            <!-- Hematopoez / Kök Hücre SVG İkonu -->
+            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="4" fill="currentColor" fill-opacity="0.25" />
+              <circle cx="5" cy="6" r="2.2" />
+              <circle cx="19" cy="6" r="2.2" />
+              <circle cx="5" cy="18" r="2.2" />
+              <circle cx="19" cy="18" r="2.2" />
+              <path d="M9.2 9.2 6.8 7.5M14.8 9.2l2.4-1.7M9.2 14.8l-2.4 1.7M14.8 14.8l2.4 1.7" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Hematopoez Atlası: Tüm Kan Hücrelerinin Embriyolojik Evrimi
+              </h1>
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+                Histoloji &amp; Embriyoloji
+              </span>
+            </div>
+            <p class="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-4xl leading-relaxed">
+              Lateral plak mezoderminin <strong class="font-semibold text-slate-800 dark:text-slate-200">splanknik tabakasından</strong>
+              (<span class="font-medium text-rose-600 dark:text-rose-400">Hemangioblast</span> &rarr;
+              <span class="font-medium text-indigo-600 dark:text-indigo-400">Hematopoetik Kök Hücre / HSC</span>)
+              olgun kan hücrelerine kadar tüm soy ağacı, olgunlaşma basamakları, mitoz sınırları ve tıbbi etimoloji.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tema Geçiş Düğmesi -->
+        <div class="flex items-center gap-2 self-end md:self-center shrink-0">
+          <button
+            id="themeToggleBtn"
+            type="button"
+            aria-label="Karanlık veya aydınlık temaya geç"
+            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium border border-slate-200 dark:border-slate-700 bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all shadow-sm cursor-pointer"
+          >
+            <span id="themeIcon" class="w-4 h-4 flex items-center justify-center"></span>
+            <span id="themeLabel">Karanlık Tema</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Özet İstatistik / Embriyolojik Kural Şeridi -->
+      <div class="mt-3.5 pt-3 border-t border-slate-100 dark:border-slate-800/80 grid grid-cols-2 lg:grid-cols-4 gap-2.5 text-xs">
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/70 dark:border-slate-700/60">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shrink-0"></span>
+          <span class="text-slate-600 dark:text-slate-300"><strong class="text-slate-900 dark:text-white">Köken:</strong> Splanknik Mezoderm (3. hafta)</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-orange-50/70 dark:bg-orange-950/30 border border-orange-200/70 dark:border-orange-800/50">
+          <span class="w-2.5 h-2.5 rounded-full bg-orange-500 shrink-0"></span>
+          <span class="text-orange-900 dark:text-orange-200"><strong>Miyeloid Soy (CMP):</strong> 7 Olgun Soy</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 border border-indigo-200/70 dark:border-indigo-800/50">
+          <span class="w-2.5 h-2.5 rounded-full bg-indigo-500 shrink-0"></span>
+          <span class="text-indigo-900 dark:text-indigo-200"><strong>Lenfoid Soy (CLP):</strong> 3 Olgun Soy</span>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-2 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-300/80 dark:border-amber-700/60">
+          <span class="text-amber-500 font-bold text-sm leading-none shrink-0">&#9733;</span>
+          <span class="text-amber-950 dark:text-amber-200"><strong>Kural:</strong> Olgunlaşma arttıkça mitoz sonlanır</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-8">
+
+    <!-- ===================================================================== -->
+    <!-- 2. BÖLÜM 1 — İNTRAUTERİN HEMATOPOEZ GÖÇÜ (ETKİLEŞİMLİ ZAMAN ÇİZELGESİ)-->
+    <!-- ===================================================================== -->
+    <section aria-labelledby="timeline-heading" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+      <div class="px-5 sm:px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">Bölüm 1 &bull; Dinamik Yer Değişim</span>
+          <h2 id="timeline-heading" class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+            İntrauterin Hematopoez Göçü (Embriyonik Zaman Çizelgesi)
+          </h2>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          Detayları, hemoglobin geçişini ve etimolojiyi görmek için bir evreye tıklayın.
+        </p>
+      </div>
+
+      <div class="p-5 sm:p-6">
+        <!-- 3 Evre Kartı ve Yön Okları -->
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] items-stretch gap-3" id="timelineCardsContainer">
+          <!-- JS tarafından doldurulur -->
+        </div>
+
+        <!-- Seçili Evrenin Anlık Detay Paneli -->
+        <div id="timelineDetailPanel" class="mt-5 rounded-2xl border border-slate-200 dark:border-slate-700/80 bg-slate-50/80 dark:bg-slate-800/50 p-5 transition-all">
+          <!-- JS tarafından doldurulur -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 3. BÖLÜM 2 — FİLTRELEME, MİTOZ VURGUSU VE ARAMA ÇUBUĞU                -->
+    <!-- ===================================================================== -->
+    <section aria-label="Filtreleme ve Arama" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm p-4 sm:p-5 space-y-4">
+      <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4">
+        <!-- Soy Filtre Butonları -->
+        <div class="flex flex-wrap items-center gap-2" role="group" aria-label="Soy Filtreleri">
+          <button type="button" data-filter="all" class="filter-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer">
+            Tümü (10)
+          </button>
+          <button type="button" data-filter="CMP" class="filter-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer">
+            Miyeloid Soy (CMP) (7)
+          </button>
+          <button type="button" data-filter="CLP" class="filter-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer">
+            Lenfoid Soy (CLP) (3)
+          </button>
+          <button type="button" data-filter="granulocyte" class="filter-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer">
+            Granülositler (3)
+          </button>
+        </div>
+
+        <!-- Sağ Kontrol Grubu: Mitoz Toggle + Arama -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+          <!-- Mitoz Sınırını Vurgula Anahtarı -->
+          <label class="inline-flex items-center justify-between sm:justify-start gap-3 px-3.5 py-2 rounded-xl border border-amber-300/80 dark:border-amber-700/70 bg-amber-50/70 dark:bg-amber-950/30 cursor-pointer select-none">
+            <span class="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-amber-900 dark:text-amber-200">
+              <span class="text-amber-500 text-base leading-none">&#9733;</span>
+              Mitoz Sınırını Vurgula
+            </span>
+            <span class="relative inline-flex items-center">
+              <input type="checkbox" id="mitozToggle" class="sr-only peer" />
+              <span class="w-10 h-5 bg-slate-300 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:bg-amber-500 transition-colors after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5 shadow-inner"></span>
+            </span>
+          </label>
+
+          <!-- Gerçek Zamanlı Arama Kutusu -->
+          <div class="relative flex-1 sm:w-72">
+            <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35" stroke-linecap="round"></path>
+            </svg>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Hücre, öncül veya görev ara..."
+              class="w-full pl-10 pr-9 py-2 rounded-xl text-sm bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all"
+            />
+            <button
+              id="clearSearchBtn"
+              type="button"
+              aria-label="Aramayı temizle"
+              class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1 rounded-lg cursor-pointer"
+            >
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Basamak İşaretleri Açıklama Şeridi (Lejant) -->
+      <div class="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600 dark:text-slate-400">
+        <div class="flex flex-wrap items-center gap-4">
+          <span class="inline-flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-emerald-500/20"></span>
+            <span>Mitoz geçirebilen öncül</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5 font-medium text-amber-800 dark:text-amber-300">
+            <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-amber-100 dark:bg-amber-900/60 border border-amber-400 text-amber-600 dark:text-amber-300 text-[10px]">&#9733;</span>
+            <span>Son bölünebilen öncül (Mitoz Sınırı)</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-400 dark:bg-slate-500"></span>
+            <span>Mitoz bitti / Terminal farklılaşma</span>
+          </span>
+        </div>
+        <div id="resultCountBadge" class="font-medium text-slate-700 dark:text-slate-300">
+          10 / 10 soy gösteriliyor
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4. BÖLÜM 3 — ETKİLEŞİMLİ HEMATOPOEZ TABLOSU                           -->
+    <!-- ===================================================================== -->
+    <section aria-labelledby="table-heading" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+      <div class="px-5 sm:px-6 py-4 border-b border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Bölüm 2 &bull; İkili Soy Ayrımı ve Olgunlaşma</span>
+          <h2 id="table-heading" class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+            Etkileşimli Kan Hücreleri Soy Ağacı Tablosu
+          </h2>
+        </div>
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          Histolojik detaylar ve etimoloji için herhangi bir satıra veya basamağa tıklayın.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[1120px]">
+          <thead>
+            <tr class="bg-slate-50 dark:bg-slate-800/80 border-b border-slate-200 dark:border-slate-700 text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+              <th class="py-3.5 px-4 w-[185px]">1. Olgun Hücre</th>
+              <th class="py-3.5 px-3 w-[125px]">2. Ana Soy</th>
+              <th class="py-3.5 px-3 w-[170px]">3. Embriyolojik Köken</th>
+              <th class="py-3.5 px-4 min-w-[360px]">4. Olgunlaşma Basamakları (Tıklanabilir)</th>
+              <th class="py-3.5 px-3 w-[165px]">5. Mitoz Sınırı</th>
+              <th class="py-3.5 px-3 w-[135px]">6. Olgunlaşma Yeri</th>
+              <th class="py-3.5 px-4 w-[200px]">7. Temel Görev</th>
+            </tr>
+          </thead>
+          <tbody id="hematopoiesisTableBody" class="divide-y divide-slate-100 dark:divide-slate-800 text-sm">
+            <!-- JS tarafından doldurulur -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Boş Arama Durumu -->
+      <div id="emptyState" class="hidden py-14 px-6 text-center">
+        <div class="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 mx-auto flex items-center justify-center text-slate-400 mb-3">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <path d="m21 21-4.35-4.35" stroke-linecap="round"></path>
+          </svg>
+        </div>
+        <h3 class="text-base font-semibold text-slate-800 dark:text-slate-200">Eşleşen kan hücresi bulunamadı</h3>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Arama terimini değiştirin veya soy filtresini sıfırlayın.</p>
+        <button id="resetFiltersBtn" type="button" class="mt-4 px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors cursor-pointer">
+          Filtreleri Sıfırla
+        </button>
+      </div>
+    </section>
+
+    <!-- Akademik Alt Bilgi Notu -->
+    <footer class="text-center text-xs text-slate-500 dark:text-slate-400 pb-6 space-y-1">
+      <p>
+        <strong>Klinik &amp; Histolojik Hatırlatma:</strong> Miyeloblast ve promiyelosit yalnızca <em>granülosit</em> (nötrofil, eozinofil, bazofil) soyuna özgü erken öncüllerdir.
+      </p>
+      <p>Hematopoez Atlası &bull; Tıp Eğitimi için İnteraktif Embriyoloji ve Histoloji Kaynağı</p>
+    </footer>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 5. BÖLÜM 4 — ETKİLEŞİMLİ DETAY VE ETİMOLOJİ ÇEKMECESİ (YAN PANEL)     -->
+  <!-- ===================================================================== -->
+  <div id="detailDrawerWrapper" class="fixed inset-0 z-50 hidden" aria-modal="true" role="dialog" aria-labelledby="drawerTitle">
+    <!-- Arka Plan Karartma -->
+    <div id="drawerBackdrop" class="drawer-backdrop fixed inset-0 bg-slate-950/55 backdrop-blur-xs opacity-0"></div>
+
+    <!-- Sağdan Açılan Çekmece -->
+    <div class="fixed inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
+      <aside id="drawerPanel" class="drawer-panel translate-x-full w-screen max-w-2xl bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-200 dark:border-slate-800 flex flex-col h-full">
+        <!-- Çekmece Üst Başlık -->
+        <div class="px-5 sm:px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-3 bg-slate-50/80 dark:bg-slate-900/95">
+          <div class="flex items-center gap-3 min-w-0">
+            <div id="drawerIconBox" class="w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 shadow-sm"></div>
+            <div class="min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <h3 id="drawerTitle" class="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white truncate"></h3>
+                <span id="drawerLineageBadge" class="px-2.5 py-0.5 rounded-full text-xs font-bold"></span>
+              </div>
+              <p id="drawerSubtitle" class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5"></p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button id="prevCellBtn" type="button" title="Önceki hücre" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors cursor-pointer">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button id="nextCellBtn" type="button" title="Sonraki hücre" class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors cursor-pointer">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <button id="closeDrawerBtn" type="button" aria-label="Paneli kapat" class="ml-1 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Çekmece Kaydırılabilir İçerik -->
+        <div id="drawerContent" class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-6">
+          <!-- JS tarafından doldurulur -->
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- UYGULAMA VERİLERİ VE ETKİLEŞİM MANTIĞI (INLINE JS)                    -->
+  <!-- ===================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ------------------------------------------------------------------- */
+      /* 1. İNTRAUTERİN HEMATOPOEZ EVRELERİ VERİSİ                           */
+      /* ------------------------------------------------------------------- */
+      const INTRAUTERINE_STAGES = [
+        {
+          id: 'mezoblastik',
+          number: 'EVRE 1',
+          title: 'Mezoblastik Evre',
+          period: '3. Hafta – 2. Ay',
+          shortOrgan: 'Yolk Kesesi (Kan Adacıkları)',
+          summary: 'İlkel çekirdekli eritroblastlar; Hb Gower I, Gower II, Portland',
+          accent: 'rose',
+          origin: 'Ekstraembriyonik splanknik mezoderm (yolk kesesi duvarı). Hemangioblastların dış tabakası endoteli, iç tabakası ilkel hematopoetik hücreleri oluşturur.',
+          dominantOrgan: 'Yolk Kesesi (Vitellus Kesesi) duvarındaki kan adacıkları; ardından paraaortik splanknoplevra / AGM (Aorta-Gonad-Mezonefroz) bölgesi kesin (definitif) HSC kaynağını üretir.',
+          hemoglobin: 'Embriyonik Hemoglobinler: Hb Gower I (ζ2ε2), Hb Gower II (α2ε2) ve Hb Portland (ζ2γ2).',
+          cellsProduced: 'Başlıca büyük, çekirdekli ilkel (primitif) eritroblastlar. Lökosit ve trombosit üretimi henüz belirgin değildir.',
+          clinicalNote: 'Yolk kesesi hematopoezi geçicidir (primitif). Erişkin yaşam boyu sürecek olan kalıcı (definitif) Hematopoetik Kök Hücreler (HSC), 4. haftada embriyo içindeki AGM (Aorta-Gonad-Mezonefroz) bölgesinin splanknik mezoderminden doğarak karaciğere göç eder.',
+          etymology: [
+            { term: 'Mezoblast', root: 'Eski Yun. μέσος (mésos: orta) + βλαστός (blastós: filiz, öncül hücre)', meaning: 'Orta germ yaprağı (mezoderm) kökenli erken öncül hücre.' },
+            { term: 'Hemangioblast', root: 'Eski Yun. αἷμα (haîma: kan) + ἀγγεῖον (angeîon: damar, kap) + βλαστός (blastós: öncül)', meaning: 'Hem kan hücrelerini hem de damar endotelini oluşturan ortak embriyonik ata hücre.' }
+          ]
+        },
+        {
+          id: 'hepatik',
+          number: 'EVRE 2',
+          title: 'Hepatik Evre',
+          period: '2. Ay (~6. Hafta) – 6. Ay',
+          shortOrgan: 'Karaciğer (Ana), Dalak, Timus',
+          summary: 'Çekirdeksiz eritrositler, granülosit/megakaryosit başlangıcı; HbF baskın',
+          accent: 'amber',
+          origin: 'AGM bölgesinden ve yolk kesesinden kan dolaşımıyla göç eden definitif Hematopoetik Kök Hücreler (HSC) karaciğer sinüzoidlerine yerleşir.',
+          dominantOrgan: 'Karaciğer (2. trimesterde en büyük kan yapım merkezi); buna eşlik eden Dalak (eritropoez/lenfopoez) ve Timus (T lenfosit olgunlaşması).',
+          hemoglobin: 'Fetal Hemoglobin: HbF (α2γ2) baskındır. Oksijene afinitesi HbA’dan yüksek olduğu için plasentadan anne kanındaki O₂’yi etkin biçimde çeker.',
+          cellsProduced: 'Çekirdeksiz (definitif) eritrositler, megakaryositler, granülositler ve erken lenfositler üretilmeye başlanır.',
+          clinicalNote: 'Ekstramedüller Hematopoez: Doğum sonrası ağır kronik anemilerde (örn. Beta-Talasemi Majör, miyelofibrozis) kemik iliği yetersiz kalırsa, karaciğer ve dalak bu embriyolojik hafızayı yeniden aktive ederek kan üretmeye başlar (hepatosplenomegali).',
+          etymology: [
+            { term: 'Hepatik', root: 'Eski Yun. ἧπαρ (hêpar, tamlayan: hḗpatos: karaciğer)', meaning: 'Karaciğere ait olan.' },
+            { term: 'Ekstramedüller', root: 'Lat. extra (dışında) + medulla (ilik, öz)', meaning: 'Kemik iliği dışında (karaciğer/dalak gibi organlarda) gerçekleşen.' }
+          ]
+        },
+        {
+          id: 'miyeloid',
+          number: 'EVRE 3',
+          title: 'Miyeloid (Medüller) Evre',
+          period: '5. Aydan İtibaren & Doğum Sonrası',
+          shortOrgan: 'Kemik İliği (Tek Fizyolojik Merkez)',
+          summary: 'Tüm kan hücreleri üretilir; doğum sonrası HbA baskın hale gelir',
+          accent: 'indigo',
+          origin: 'Karaciğerdeki definitif HSC’ler, 5. aydan itibaren kemikleşen iskeletin medüller boşluklarına (kemik iliği stromasına) göç ederek ömür boyu yerleşir.',
+          dominantOrgan: 'Kemik İliği (Medulla ossium). Doğumdan sonra fizyolojik şartlarda kan yapımının tek merkezidir. Çocuklukta tüm kemiklerde aktifken erişkinde aksiyel iskelette (sternum, pelvis/iliak krest, vertebralar, kostalar) sınırlanır.',
+          hemoglobin: 'Erişkin Hemoglobin: HbA (α2β2, ~%96–98), HbA2 (α2δ2, ~%2–3) ve eser miktarda HbF (<%1).',
+          cellsProduced: 'Ortak Miyeloid Progenitör (CMP) ve Ortak Lenfoid Progenitör (CLP) üzerinden tüm eritrosit, trombosit, granülosit, monosit ve lenfosit soyları.',
+          clinicalNote: 'Kemik iliğinde kırmızı (aktif hematopoetik) ilik yaş ilerledikçe uzun kemik diafizlerinde yağlanarak sarı iliğe dönüşür; ancak ağır kan kaybında sarı ilik tekrar kırmızı iliğe dönüşebilir.',
+          etymology: [
+            { term: 'Miyeloid', root: 'Eski Yun. μυελός (myelós: ilik, kemik iliği) + -ειδής (-eidḗs: benzer, ilişkin)', meaning: 'Kemik iliğine ait, kemik iliğinden köken alan.' },
+            { term: 'Medüller', root: 'Lat. medulla (ilik, iç öz)', meaning: 'Kemik iliği boşluğu içinde gerçekleşen.' }
+          ]
+        }
+      ];
+
+      /* ------------------------------------------------------------------- */
+      /* 2. TÜM 10 KAN HÜCRESİ SOYUNUN KAPSAMLI VERİSİ                       */
+      /* ------------------------------------------------------------------- */
+      // stage status: 'dividing' (yeşil nokta), 'last-dividing' (altın yıldız - mitoz sınırı), 'post-mitotic' (nötr gri)
+      const BLOOD_CELLS = [
+        {
+          id: 'eritrosit',
+          name: 'Eritrosit',
+          shortLabel: 'Alyuvar',
+          lineage: 'CMP',
+          lineageFull: 'Ortak Miyeloid Progenitör (CMP)',
+          isGranulocyte: false,
+          originPath: 'Splanknik Mezoderm → HSC → CMP',
+          maturationSite: 'Kemik İliği (Eritroblast adacıkları)',
+          mitosisLimit: 'Polikromatofilik Eritroblast',
+          mitosisSummary: 'Eritropoezde mitoz geçirebilen son öncül polikromatofilik eritroblasttır. Ortokromatofilik evrede çekirdek piknotikleşip atılır (enükleasyon); retikülosit ve olgun eritrosit çekirdeksizdir ve bölünemez.',
+          functionText: 'Hemoglobin aracılığıyla akciğerlerden dokulara O₂, dokulardan akciğerlere CO₂ taşınması.',
+          colorTheme: 'rose',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity="0.22" stroke="currentColor" stroke-width="2"/><ellipse cx="12" cy="12" rx="4.5" ry="3.2" fill="currentColor" fill-opacity="0.35"/></svg>`,
+          stages: [
+            { name: 'Proeritroblast', status: 'dividing', note: 'Büyük, gevşek kromatinli çekirdek; yoğun bazofilik (mavi) sitoplazma; hemoglobin henüz yoktur.' },
+            { name: 'Bazofilik Eritroblast', status: 'dividing', note: 'Yoğun serbest poliribozomlar nedeniyle koyu mavi sitoplazma; hemoglobin sentezi başlar.' },
+            { name: 'Polikromatofilik Eritroblast', status: 'last-dividing', note: 'MİTOZ SINIRI: Hem mavi ribozomlar hem pembe hemoglobin bir arada bulunduğu için gri-mor (çok renkli) boyanır. Son kez mitoz geçirir.' },
+            { name: 'Ortokromatofilik Eritroblast', status: 'post-mitotic', note: 'Normoblast olarak da bilinir. Sitoplazma pembe (asidofilik), çekirdek küçük ve çok koyudur (piknotik); çekirdek ekzositozla atılır.' },
+            { name: 'Retikülosit', status: 'post-mitotic', note: 'Çekirdeksizdir ancak kalıntı ribozom (RNA) ağı içerir. Kemik iliğinden kana geçer ve 1–2 günde olgunlaşır.' },
+            { name: 'Eritrosit', status: 'post-mitotic', note: '7.5 µm çapında bikonkav disk; çekirdek ve organel içermez. Yaşam süresi ~120 gündür.' }
+          ],
+          histology: {
+            nucleus: 'Olgun formda çekirdeksiz (enüklee). Çekirdek atımı ortokromatofilik eritroblast aşamasında gerçekleşir.',
+            cytoplasm: 'Bikonkav disk yapısı (merkezi solukluk ~1/3 çap); yoğun asidofilik (pembe/eozinofilik) hemoglobin dolu sitoplazma.',
+            special: 'Hücre zarı spektrin-ankirin ağıyla esnektir; dar kapillerlerden katlanarak geçebilir. Eritropoetin (EPO) ile uyarılır.'
+          },
+          etymology: [
+            { term: 'Eritrosit', root: 'Eski Yun. ἐρυθρός (erythrós: kırmızı) + κύτος (kýtos: hücre)', meaning: 'Kırmızı hücre (alyuvar).' },
+            { term: 'Polikromatofilik', root: 'Eski Yun. πολύς (polýs: çok) + χρῶμα (khrôma: renk) + φίλος (phílos: seven)', meaning: 'Hem bazik hem asidik boyaları tutarak çok renkli (gri-mor) boyanan.' },
+            { term: 'Retikülosit', root: 'Lat. reticulum (küçük ağ, rete: ağ) + Yun. κύτος (kýtos: hücre)', meaning: 'Supravital boyamada sitoplazmasında ağsı ribozom kalıntısı görülen genç alyuvar.' }
+          ]
+        },
+        {
+          id: 'trombosit',
+          name: 'Trombosit',
+          shortLabel: 'Kan Pulcuğu',
+          lineage: 'CMP',
+          lineageFull: 'Ortak Miyeloid Progenitör (CMP)',
+          isGranulocyte: false,
+          originPath: 'Splanknik Mezoderm → HSC → CMP',
+          maturationSite: 'Kemik İliği (Sinüzoid komşuluğu)',
+          mitosisLimit: 'Megakaryosit (Endomitoz)',
+          mitosisSummary: 'Megakaryoblast ve megakaryosit evresinde sitokinez olmadan DNA replikasyonu (endomitoz) gerçekleşir; böylece 64N’ye kadar poliploid dev çekirdek oluşur. Olgun trombosit hücre değil, megakaryositin sitoplazmik parçasıdır ve bölünemez.',
+          functionText: 'Primer hemostaz (trombosit tıkacı oluşturma), damar onarımı (PDGF) ve pıhtılaşma kaskadına yüzey sağlama.',
+          colorTheme: 'amber',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><path d="M7 9.5c1.5-2.5 5-3 7.5-1.5s3 5 1.5 7.5-5 3-7.5 1.5S5.5 12 7 9.5Z" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.8"/><circle cx="10.5" cy="11.5" r="1.1" fill="currentColor"/><circle cx="13.5" cy="13" r="1.1" fill="currentColor"/><circle cx="12" cy="9.5" r="0.9" fill="currentColor"/></svg>`,
+          stages: [
+            { name: 'Megakaryoblast', status: 'dividing', note: 'Büyük, oval veya böbrek biçimli çekirdekli öncül; endomitoz süreci başlar.' },
+            { name: 'Promegakaryosit', status: 'dividing', note: 'Çekirdek lobüllenmeye ve poliploidleşmeye başlar; demarkasyon membran sistemi (DMS) gelişir.' },
+            { name: 'Megakaryosit', status: 'last-dividing', note: 'ENDOMİTOZ SINIRI: 50–100 µm çapında, poliploid (8N–64N) dev hücre. Sinüzoid lümenine uzattığı proplatelet kollarından binlerce trombosit koparır.' },
+            { name: 'Trombosit', status: 'post-mitotic', note: '2–4 µm çapında, çekirdeksiz sitoplazmik diskler. Ömrü 7–10 gündür.' }
+          ],
+          histology: {
+            nucleus: 'Trombositler çekirdeksizdir. Ataları olan megakaryosit ise kemik iliğinin en büyük, çok loblu poliploid çekirdekli hücresidir.',
+            cytoplasm: 'Dışta soluk mavi hiyalomer (aktin/mikrotübül ağı), merkezde mor granüllerden oluşan granülomer (α, δ ve λ granülleri).',
+            special: 'Karaciğer ve böbrekte üretilen Trombopoetin (TPO) tarafından düzenlenir. Bir megakaryosit ~2.000–4.000 trombosit üretir.'
+          },
+          etymology: [
+            { term: 'Trombosit', root: 'Eski Yun. θρόμβος (thrómbos: pıhtı) + κύτος (kýtos: hücre)', meaning: 'Pıhtı hücresi (kan pulcuğu).' },
+            { term: 'Megakaryosit', root: 'Eski Yun. μέγας (mégas: büyük) + κάρυον (káryon: çekirdek/ceviz) + κύτος (kýtos: hücre)', meaning: 'Dev çekirdekli hücre.' },
+            { term: 'Endomitoz', root: 'Eski Yun. ἔνδον (éndon: iç) + μίτος (mítos: iplik/mitoz)', meaning: 'Hücre bölünmesi (sitokinez) olmaksızın çekirdek içi kromozom katlanması.' }
+          ]
+        },
+        {
+          id: 'notrofil',
+          name: 'Nötrofil',
+          shortLabel: 'Polimorfonükleer (PMN)',
+          lineage: 'CMP',
+          lineageFull: 'Ortak Miyeloid Progenitör (CMP) • Granülosit',
+          isGranulocyte: true,
+          originPath: 'Splanknik Mezoderm → HSC → CMP → Granülosit',
+          maturationSite: 'Kemik İliği',
+          mitosisLimit: 'Nötrofilik Miyelosit',
+          mitosisSummary: 'Granülopoezde mitoz geçirebilen son öncül miyelosittir. Metamiyelositten itibaren bölünme biter, yalnızca çekirdek boğumlanır. Miyeloblast ve promiyelosit yalnızca granülosit soyuna özgüdür.',
+          functionText: 'Akut inflamasyonun ilk savunma hattı; bakterilerin fagositozu, oksidatif patlama (MPO) ve NET (hücre dışı tuzak) oluşumu.',
+          colorTheme: 'orange',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.8"/><path d="M8.5 10.5c0-1.4 1.3-2.3 2.2-1.5.7.6.3 2 1.3 2s.6-1.4 1.3-2c.9-.8 2.2.1 2.2 1.5s-1.2 2.4-1.8 3.2c-.6.8-1 2-2.2 1.8-1.1-.2-1.1-1.4-1.7-2.2-.7-.8-1.3-1.4-1.3-2.8Z" fill="currentColor" fill-opacity="0.75"/></svg>`,
+          stages: [
+            { name: 'Miyeloblast', status: 'dividing', note: 'Yalnızca granülosit soyuna özgüdür. Sitoplazmik granül içermez; belirgin çekirdekçikli büyük çekirdek.' },
+            { name: 'Promiyelosit', status: 'dividing', note: 'Yalnızca granülosit soyuna özgüdür. İlk kez azurofilik (primer / MPO+) granüller belirir.' },
+            { name: 'Nötrofilik Miyelosit', status: 'last-dividing', note: 'MİTOZ SINIRI: Spesifik (sekonder) nötrofilik granüller ilk kez burada sentezlenir. Bölünebilen son öncüldür.' },
+            { name: 'Metamiyelosit', status: 'post-mitotic', note: 'Mitoz tamamen durmuştur. Çekirdek fasulye/böbrek biçiminde çentiklenir.' },
+            { name: 'Bant (Çomak) Hücre', status: 'post-mitotic', note: 'Çekirdek at nalı veya C şeklinde uzamıştır. Enfeksiyonda kana erken çıkması "sola kayma" olarak adlandırılır.' },
+            { name: 'Segmentli Nötrofil', status: 'post-mitotic', note: '3–5 loblu (segmentli) olgun çekirdek. Kanda en bol bulunan lökosittir (%55–70).' }
+          ],
+          histology: {
+            nucleus: 'İnce kromatin köprüleriyle bağlı 3–5 loblu (polimorfonükleer) çekirdek. Dişilerde inaktif X kromozomu "davul tokmağı" (Barr cisimciği) oluşturur.',
+            cytoplasm: 'Soluk pembe/nötr boyanan sitoplazma; azurofilik (primer: miyeloperoksidaz, lizozim) ve spesifik (sekonder: laktoferrin, kollajenaz) granüller.',
+            special: '6 lob ve üzeri nötrofiller (hipersegmentasyon) B12/folat eksikliği (megaloblastik anemi) için tipiktir.'
+          },
+          etymology: [
+            { term: 'Nötrofil', root: 'Lat. neuter (ne o ne öteki, nötr) + Yun. φίλος (phílos: seven)', meaning: 'Ne asidik ne bazik boyaya aşırı ilgi gösteren, nötr boyanan granülosit.' },
+            { term: 'Miyeloblast', root: 'Eski Yun. μυελός (myelós: kemik iliği) + βλαστός (blastós: öncül)', meaning: 'Kemik iliğindeki en erken granülosit öncül hücresi.' },
+            { term: 'Metamiyelosit', root: 'Eski Yun. μετά (metá: sonra, değişim) + μυελός (ilik) + κύτος (hücre)', meaning: 'Miyelositten sonra gelen, bölünmesini tamamlamış olgunlaşma evresi.' }
+          ]
+        },
+        {
+          id: 'eozinofil',
+          name: 'Eozinofil',
+          shortLabel: 'Asidofil Granülosit',
+          lineage: 'CMP',
+          lineageFull: 'Ortak Miyeloid Progenitör (CMP) • Granülosit',
+          isGranulocyte: true,
+          originPath: 'Splanknik Mezoderm → HSC → CMP → Granülosit',
+          maturationSite: 'Kemik İliği',
+          mitosisLimit: 'Eozinofilik Miyelosit',
+          mitosisSummary: 'Diğer granülositler gibi eozinofilik miyelosit evresi mitoz geçirebilen son aşamadır. Miyeloblast ve promiyelosit yalnızca granülosit soyuna özgüdür.',
+          functionText: 'Helmint (parazit) enfeksiyonlarına karşı savunma (MBP) ve tip I alerjik reaksiyonların/astımın düzenlenmesi.',
+          colorTheme: 'red',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="12" r="2.7" fill="currentColor" fill-opacity="0.75"/><circle cx="15" cy="12" r="2.7" fill="currentColor" fill-opacity="0.75"/><path d="M11.4 12h1.2" stroke="currentColor" stroke-width="1.6"/></svg>`,
+          stages: [
+            { name: 'Miyeloblast', status: 'dividing', note: 'Granülosit soyuna özgü, granülsüz erken öncül hücre.' },
+            { name: 'Promiyelosit', status: 'dividing', note: 'Granülosit soyuna özgü; primer azurofilik granüller içerir.' },
+            { name: 'Eozinofilik Miyelosit', status: 'last-dividing', note: 'MİTOZ SINIRI: Eozin (parlak turuncu-kırmızı) tutan spesifik kristalloid granüller ilk kez burada görülür. Bölünebilen son öncüldür.' },
+            { name: 'Metamiyelosit', status: 'post-mitotic', note: 'Mitoz biter; çekirdek çentiklenir, sitoplazma kırmızı-turuncu granüllerle dolar.' },
+            { name: 'Bant Eozinofil', status: 'post-mitotic', note: 'Çekirdek bant şeklinde incelir ve iki loba ayrılmaya hazırlanır.' },
+            { name: 'Olgun Eozinofil', status: 'post-mitotic', note: 'Tipik iki loblu (bilobüle / gözlük biçimli) çekirdek ve parlak kırmızı granüller.' }
+          ],
+          histology: {
+            nucleus: 'Karakteristik iki loblu (bilobüle) çekirdek.',
+            cytoplasm: 'Eozin ile parlak turuncu-kırmızı boyanan iri spesifik granüller. Elektron mikroskopisinde granül ortasında Majör Bazik Protein (MBP) kristalloid çekirdeği görülür.',
+            special: 'IL-5 sitokini eozinofil farklılaşması ve aktivasyonunun ana düzenleyicisidir. Kanda lökositlerin %1–4’ünü oluşturur.'
+          },
+          etymology: [
+            { term: 'Eozinofil', root: 'Eski Yun. ἠώς (ēṓs: şafak, kızıl tan) → eozin boyası + φίλος (phílos: seven)', meaning: 'Şafak kızılı rengindeki asidik eozin boyasını seven hücre.' },
+            { term: 'Granülosit', root: 'Lat. granulum (küçük tanecik, granum: tahıl/tane) + Yun. κύτος (kýtos: hücre)', meaning: 'Sitoplazmasında belirgin granüller (tanecikler) barındıran akyuvar.' }
+          ]
+        },
+        {
+          id: 'bazofil',
+          name: 'Bazofil',
+          shortLabel: 'Bazofilik Granülosit',
+          lineage: 'CMP',
+          lineageFull: 'Ortak Miyeloid Progenitör (CMP) • Granülosit',
+          isGranulocyte: true,
+          originPath: 'Splanknik Mezoderm → HSC → CMP → Granülosit',
+          maturationSite: 'Kemik İliği',
+          mitosisLimit: 'Bazofilik Miyelosit',
+          mitosisSummary: 'Bazofilik miyelosit evresinde spesifik koyu mor granüller sentezlenir ve hücre son kez bölünür. Miyeloblast ve promiyelosit yalnızca granülosit soyuna özgüdür.',
+          functionText: 'IgE aracılı aşırı duyarlılık (alerji/anafilaksi) yanıtlarında histamin, heparin ve lökotrien salınımı.',
+          colorTheme: 'purple',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity="0.18" stroke="currentColor" stroke-width="1.8"/><circle cx="9" cy="9.5" r="1.5" fill="currentColor"/><circle cx="14.5" cy="9" r="1.6" fill="currentColor"/><circle cx="12" cy="12.5" r="1.7" fill="currentColor"/><circle cx="8.8" cy="14.5" r="1.4" fill="currentColor"/><circle cx="15" cy="14.5" r="1.5" fill="currentColor"/></svg>`,
+          stages: [
+            { name: 'Miyeloblast', status: 'dividing', note: 'Granülosit soyuna özgü, granülsüz erken öncül.' },
+            { name: 'Promiyelosit', status: 'dividing', note: 'Granülosit soyuna özgü; azurofilik granül üretimi.' },
+            { name: 'Bazofilik Miyelosit', status: 'last-dividing', note: 'MİTOZ SINIRI: Heparin ve histamin içeren koyu bazofilik (metakromatik) spesifik granüller belirir. Son bölünebilen öncüldür.' },
+            { name: 'Metamiyelosit', status: 'post-mitotic', note: 'Mitoz sona erer; iri koyu granüller çekirdeği örtmeye başlar.' },
+            { name: 'Bant Bazofil', status: 'post-mitotic', note: 'S şeklinde bükülmeye başlayan çekirdek, yoğun mor granüllerle kaplıdır.' },
+            { name: 'Olgun Bazofil', status: 'post-mitotic', note: 'Kandaki en nadir lökosittir (<%1); S biçimli çekirdeği iri koyu mavi-mor granüllerle gizlenir.' }
+          ],
+          histology: {
+            nucleus: 'İki loblu veya S-şeklinde düzensiz çekirdek; çoğu zaman iri koyu granüller nedeniyle net seçilemez.',
+            cytoplasm: 'Heparin (antikoagülan) ve histamin (vazodilatör) yüklü, bazik boyalarla koyu mavi-mor (metakromatik) boyanan iri granüller.',
+            special: 'Yüzeyinde yüksek afiniteli IgE reseptörleri (FcεRI) taşır; işlevsel olarak doku mast hücrelerine benzer ancak ayrı bir kemik iliği olgunlaşma yolundan gelir.'
+          },
+          etymology: [
+            { term: 'Bazofil', root: 'Eski Yun. βάσις (básis: temel, baz) + φίλος (phílos: seven)', meaning: 'Bazik (alkali) boyaları güçlü biçimde tutan hücre.' },
+            { term: 'Metakromazi', root: 'Eski Yun. μετά (metá: değişim) + χρῶμα (khrôma: renk)', meaning: 'Heparin gibi polianyonların, kullanılan boyanın rengini mordan kırmızımsı-mora kaydırması.' }
+          ]
+        },
+        {
+          id: 'mast',
+          name: 'Mast Hücresi',
+          shortLabel: 'Doku Mast Hücresi',
+          lineage: 'CMP',
+          lineageFull: 'Ortak Miyeloid Progenitör (CMP)',
+          isGranulocyte: false,
+          originPath: 'Splanknik Mezoderm → HSC → CMP',
+          maturationSite: 'Bağ Dokusu / Mukozalar (Doku içi)',
+          mitosisLimit: 'Dolaşımdaki Mast Öncülü (Kısıtlı doku proliferasyonu)',
+          mitosisSummary: 'Kemik iliğinden olgunlaşmadan (granülsüz öncül olarak) kana çıkar; bağ dokusuna yerleşip SCF (c-Kit ligandı) etkisiyle olgunlaşır. Olgun mast hücreleri normalde bölünmez ancak inflamasyonda öncüller çoğalabilir.',
+          functionText: 'Damar çevresi ve mukozalarda hızlı alerjik yanıt, histamin/heparin/triptaz salınımı, parazit ve doku bariyeri savunması.',
+          colorTheme: 'fuchsia',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="9.5" ry="7.5" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3" fill="currentColor" fill-opacity="0.55"/><circle cx="7" cy="10" r="1" fill="currentColor"/><circle cx="17" cy="10.5" r="1" fill="currentColor"/><circle cx="8" cy="14.5" r="1" fill="currentColor"/><circle cx="16.5" cy="14.5" r="1" fill="currentColor"/></svg>`,
+          stages: [
+            { name: 'Miyeloid Progenitör', status: 'dividing', note: 'Kemik iliğinde CMP’den ayrılan mast hücresi öncül kolu.' },
+            { name: 'Dolaşımdaki Mast Öncülü', status: 'last-dividing', note: 'MİTOZ SINIRI: Kemik iliğinden henüz granülsüz olarak kana geçer; hedef bağ dokusuna göç ederken bölünebilme potansiyelini korur.' },
+            { name: 'Dokuda Olgun Mast Hücresi', status: 'post-mitotic', note: 'Deri, sindirim ve solunum mukozalarında damar çevresine yerleşir; SCF/c-Kit sinyaliyle yoğun granüllü uzun ömürlü olgun forma dönüşür.' }
+          ],
+          histology: {
+            nucleus: 'Bazofilin aksine loblu değildir; merkezde yerleşimli tek, yuvarlak/oval çekirdek.',
+            cytoplasm: 'Toluidin mavisi ile metakromatik mor boyanan çok sayıda iri granül (histamin, heparin, triptaz, kimaz).',
+            special: 'Periferik kanda olgun mast hücresi bulunmaz; olgunlaşmasını yalnızca periferik bağ dokusunda tamamlar.'
+          },
+          etymology: [
+            { term: 'Mast Hücresi', root: 'Alm. Mastzellen (Mästen: beslemek, semirtmek — Paul Ehrlich, 1877)', meaning: 'Sitoplazması granüllerle "tıka basa beslenmiş/dolu" görünen hücre.' },
+            { term: 'Histamin', root: 'Eski Yun. ἱστός (histós: doku) + amin', meaning: 'Dokulardan salınan ve damar geçirgenliğini artıran biyojenik amin.' }
+          ]
+        },
+        {
+          id: 'monosit',
+          name: 'Monosit / Makrofaj',
+          shortLabel: 'Mononükleer Fagosit',
+          lineage: 'CMP',
+          lineageFull: 'Ortak Miyeloid Progenitör (CMP)',
+          isGranulocyte: false,
+          originPath: 'Splanknik Mezoderm → HSC → CMP',
+          maturationSite: 'Kemik İliği → Doku (Makrofaj)',
+          mitosisLimit: 'Promonosit (Kemik İliği)',
+          mitosisSummary: 'Kemik iliğinde monoblast ve promonosit hızla bölünür; promonosit kemik iliğindeki son bölünebilen öncüldür. Kandaki monositler bölünmez; dokuya geçince makrofaja farklılaşır (bazı doku makrofajları lokal yenilenebilir).',
+          functionText: 'Fagositoz, antijen sunumu (MHC-II), sitokin üretimi, doku yıkıntılarının temizlenmesi ve kemik rezorpsiyonu (osteoklast).',
+          colorTheme: 'teal',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9.2" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.8"/><path d="M9.2 8.2c2.8-1 6.2.8 6.2 3.8s-3.4 4.8-6.2 3.8c1.4-1.2 1.8-2.3 1.8-3.8s-.4-2.6-1.8-3.8Z" fill="currentColor" fill-opacity="0.72"/></svg>`,
+          stages: [
+            { name: 'Monoblast', status: 'dividing', note: 'Kemik iliğindeki en erken monositik öncül; morfolojik olarak miyeloblasttan güç ayrılır.' },
+            { name: 'Promonosit', status: 'last-dividing', note: 'MİTOZ SINIRI: Çekirdek hafifçe çentiklenmeye başlar; kemik iliğinde mitoz geçiren son monosit öncülüdür.' },
+            { name: 'Monosit (Kan)', status: 'post-mitotic', note: 'Kandaki en büyük lökosit (12–20 µm); böbrek/at nalı biçimli çekirdek. Kanda 1–3 gün kalıp dokuya göç eder.' },
+            { name: 'Makrofaj / Osteoklast / Mikroglia / Kupffer', status: 'post-mitotic', note: 'Dokuya özgü uzmanlaşmış fagositler: Karaciğerde Kupffer, kemikte çok çekirdekli sinsityal Osteoklast, MSS’de Mikroglia, akciğerde Alveoler makrofaj.' }
+          ],
+          histology: {
+            nucleus: 'Büyük, eksantrik, böbrek veya at nalı biçimli, dantel görünümlü gevşek kromatinli çekirdek.',
+            cytoplasm: 'Buzlu cam görünümünde gri-mavi sitoplazma; çok sayıda küçük lizozom (azurofilik granül) ve fagozomal vakuoller.',
+            special: 'Not: Beyindeki mikroglia ve karaciğerdeki Kupffer hücrelerinin bir kısmı embriyonik yolk kesesi progenitörlerinden köken alıp dokuda uzun ömürlü yerleşir.'
+          },
+          etymology: [
+            { term: 'Monosit', root: 'Eski Yun. μόνος (mónos: tek) + κύτος (kýtos: hücre)', meaning: 'Tek parçalı (lobsuz) çekirdekli büyük akyuvar.' },
+            { term: 'Makrofaj', root: 'Eski Yun. μακρός (makrós: büyük) + φαγεῖν (phageîn: yemek, yutmak)', meaning: 'Büyük yutucu (fagositik) hücre.' },
+            { term: 'Osteoklast', root: 'Eski Yun. ὀστέον (ostéon: kemik) + κλαστός (klastós: kıran, parçalayan)', meaning: 'Monosit/makrofaj öncüllerinin kaynaşmasıyla oluşan kemik yıkıcı sinsityal dev hücre.' }
+          ]
+        },
+        {
+          id: 't-lenfosit',
+          name: 'T Lenfosit',
+          shortLabel: 'Hücresel Bağışıklık',
+          lineage: 'CLP',
+          lineageFull: 'Ortak Lenfoid Progenitör (CLP)',
+          isGranulocyte: false,
+          originPath: 'Splanknik Mezoderm → HSC → CLP',
+          maturationSite: 'Timus (Pozitif & Negatif Seleksiyon)',
+          mitosisLimit: 'Antijenle Yeniden Prolifere Olabilir',
+          mitosisSummary: 'Kemik iliğindeki lenfoblast ve timustaki timositler yoğun mitoz geçirir. Olgun naif T lenfositler G0 fazında bekler ancak spesifik antijenle karşılaştığında klonal genişleme (yeniden mitoz) yapar.',
+          functionText: 'Hücresel immünite: CD4+ (Yardımcı T) sitokinlerle bağışıklığı yönetir; CD8+ (Sitotoksik T) virüsle enfekte ve tümör hücrelerini öldürür.',
+          colorTheme: 'indigo',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="5.8" fill="currentColor" fill-opacity="0.72"/><text x="12" y="14.5" text-anchor="middle" fill="#fff" font-size="7.5" font-weight="800" font-family="sans-serif">T</text></svg>`,
+          stages: [
+            { name: 'Lenfoblast', status: 'dividing', note: 'Kemik iliğinde CLP’den oluşan, büyük çekirdekli aktif bölünen lenfoid öncül.' },
+            { name: 'Pre-T (Protimosit)', status: 'dividing', note: 'Kemik iliğinden kan yoluyla timusa göç eden T hücresi öncülü.' },
+            { name: 'Timik Seleksiyon (Timus)', status: 'last-dividing', note: 'GELİŞİMSEL MİTOZ ZİRVESİ: Timus korteksinde pozitif, medullasında negatif seleksiyon geçirerek kendi dokusuna saldırmayan CD4+ veya CD8+ hücreler seçilir.' },
+            { name: 'Olgun T Lenfosit (CD4+ / CD8+)', status: 'post-mitotic', note: 'Sekonder lenfoid organlarda (lenf düğümü, dalak) devriye gezer. Antijen sunumuyla yeniden prolifere olup efektör ve bellek T hücrelerine dönüşebilir.' }
+          ],
+          histology: {
+            nucleus: 'Hücre hacminin neredeyse tamamını dolduran koyu, yoğun heterokromatinli yuvarlak çekirdek.',
+            cytoplasm: 'Çekirdeği ince bir halka şeklinde saran soluk mavi, granülsüz dar sitoplazma.',
+            special: 'Tüm olgun T lenfositler CD3+ belirtecini taşır. Kanda dolaşan lenfositlerin ~%70–80’i T lenfosittir.'
+          },
+          etymology: [
+            { term: 'Lenfosit', root: 'Lat. lympha (berrak su, kaynak suyu) + Yun. κύτος (kýtos: hücre)', meaning: 'Lenf sıvısı ve lenfoid organlarda bol bulunan berrak bağışıklık hücresi.' },
+            { term: 'T (Timus)', root: 'Eski Yun. θύμος (thýmos: kekik bitkisi veya ruh/göğüs bölgesi)', meaning: 'T lenfositlerin olgunlaştığı, şekli kekik tomurcuğuna benzetilen ön mediastinal organ.' }
+          ]
+        },
+        {
+          id: 'b-lenfosit',
+          name: 'B Lenfosit / Plazma Hücresi',
+          shortLabel: 'Hümoral Bağışıklık',
+          lineage: 'CLP',
+          lineageFull: 'Ortak Lenfoid Progenitör (CLP)',
+          isGranulocyte: false,
+          originPath: 'Splanknik Mezoderm → HSC → CLP',
+          maturationSite: 'Kemik İliği → Lenfoid Organlar',
+          mitosisLimit: 'Olgun B (Klonal Mitoz) → Plazma (Bölünmez)',
+          mitosisSummary: 'Kemik iliğinde Pre-B evresinde yoğun proliferasyon olur. Olgun B lenfosit antijenle karşılaşınca germinal merkezde klonal olarak bölünür; ancak terminal farklılaşma ürünü olan Plazma Hücresi artık bölünmez.',
+          functionText: 'Hümoral (sıvısal) immünite: Antijen tanıma/sunma ve plazma hücresine dönüşerek spesifik immünoglobulin (antikor: IgG, IgA, IgM, IgE, IgD) üretme.',
+          colorTheme: 'blue',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.8"/><circle cx="10" cy="12" r="4.6" fill="currentColor" fill-opacity="0.72"/><text x="10" y="14.3" text-anchor="middle" fill="#fff" font-size="7" font-weight="800" font-family="sans-serif">B</text></svg>`,
+          stages: [
+            { name: 'Lenfoblast', status: 'dividing', note: 'Kemik iliğindeki ortak lenfoid öncül.' },
+            { name: 'Pre-B Hücresi', status: 'dividing', note: 'Kemik iliği stromal hücreleri eşliğinde immünoglobulin ağır zincir (μ) yeniden düzenlenmesi ve proliferasyon.' },
+            { name: 'Olgun B Lenfosit (Kemik İliği)', status: 'last-dividing', note: 'Yüzeyinde IgM/IgD reseptörleri (BCR) ve CD19/CD20 taşır. Antijen uyarımıyla lenf düğümü germinal merkezinde klonal mitoz geçirir.' },
+            { name: 'Plazma Hücresi', status: 'post-mitotic', note: 'TERMİNAL FARKLILAŞMA (BÖLÜNMEZ): Saniyede binlerce antikor salgılayan, bol granüllü endoplazmik retikulumlu (GER) fabrika hücresi.' }
+          ],
+          histology: {
+            nucleus: 'B lenfositte yuvarlak koyu çekirdek; Plazma hücresinde eksantrik yerleşimli, "saat kadranı / araba tekerleği" desenli kromatin.',
+            cytoplasm: 'Plazma hücresinde yoğun GER nedeniyle koyu bazofilik sitoplazma ve çekirdek yanında soluk "Golgi hayaleti" (perinükleer halo).',
+            special: 'Plazma hücreleri periferik kanda normalde görülmez; kemik iliği ve bağ dokusunda (lamina propria) bulunur.'
+          },
+          etymology: [
+            { term: 'B Lenfosit', root: 'İng. Bone Marrow (Kemik İliği) & Lat. Bursa Fabricii (kuşlarda ilk keşfedildiği organ)', meaning: 'Memelilerde kemik iliğinde olgunlaşan antikor öncülü lenfosit.' },
+            { term: 'Plazma Hücresi', root: 'Eski Yun. πλάσμα (plásma: biçimlendirilmiş madde, sıvı öz)', meaning: 'Sitoplazması bol ve kan plazmasına antikor salgılayan terminal B hücresi.' }
+          ]
+        },
+        {
+          id: 'nk-hucresi',
+          name: 'NK (Doğal Öldürücü) Hücre',
+          shortLabel: 'Büyük Granüler Lenfosit',
+          lineage: 'CLP',
+          lineageFull: 'Ortak Lenfoid Progenitör (CLP)',
+          isGranulocyte: false,
+          originPath: 'Splanknik Mezoderm → HSC → CLP',
+          maturationSite: 'Kemik İliği & Sekonder Lenfoid Dokular',
+          mitosisLimit: 'Pre-NK Öncülü (Sitokinle Genişleyebilir)',
+          mitosisSummary: 'Kemik iliğinde Lenfoblast ve Pre-NK aşamalarında IL-15 uyarısıyla prolifere olur. Olgun NK hücreleri doğuştan bağışıklık efektörüdür; enfeksiyonda IL-2/IL-15 ile sınırlı proliferasyon gösterebilir.',
+          functionText: 'Önceden duyarlanma gerektirmeden MHC-I ifadesini kaybetmiş virüsle enfekte hücreleri ve tümör hücrelerini perforin/granzim ile apoptoza götürme.',
+          colorTheme: 'sky',
+          iconSvg: `<svg class="w-6 h-6" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="currentColor" fill-opacity="0.16" stroke="currentColor" stroke-width="1.8"/><circle cx="10.5" cy="12" r="4.5" fill="currentColor" fill-opacity="0.72"/><circle cx="16.5" cy="9.5" r="1" fill="currentColor"/><circle cx="17" cy="13" r="1" fill="currentColor"/><circle cx="15.5" cy="15.5" r="0.9" fill="currentColor"/></svg>`,
+          stages: [
+            { name: 'Lenfoblast', status: 'dividing', note: 'Kemik iliğinde CLP’den gelişen erken lenfoid öncül.' },
+            { name: 'Pre-NK Öncülü', status: 'last-dividing', note: 'MİTOZ SINIRI: Kemik iliğinde IL-15 reseptörü (CD122) kazanarak hızla çoğalır ve NK soyuna adanır.' },
+            { name: 'Olgun NK Hücresi (Büyük Granüler Lenfosit)', status: 'post-mitotic', note: 'CD16+ ve CD56+ yüzey belirteçleri taşır; T ve B hücrelerinden farklı olarak antijen-spesifik TCR/BCR reseptörü içermez.' }
+          ],
+          histology: {
+            nucleus: 'T ve B lenfositlere göre hafifçe daha büyük, bazen hafif çentikli koyu çekirdek.',
+            cytoplasm: 'Daha geniş soluk mavi sitoplazma içinde perforin ve granzim içeren azurofilik granüller (Büyük Granüler Lenfosit görünümü).',
+            special: 'ADCC (Antikor Bağımlı Hücresel Sitotoksisite) mekanizmasında CD16 (FcγRIII) reseptörü ile IgG kaplı hedefleri yok eder.'
+          },
+          etymology: [
+            { term: 'NK (Natural Killer)', root: 'İng. Natural (Doğal) + Killer (Öldürücü)', meaning: 'Önceden antijenle karşılaşmaya gerek duymadan hedef hücreyi doğal olarak öldürebilen lenfosit.' },
+            { term: 'Perforin', root: 'Lat. perforare (delmek, delip geçmek)', meaning: 'Hedef hücre zarında porlar (delikler) açarak granzim girişini sağlayan protein.' }
+          ]
+        }
+      ];
+
+      /* ------------------------------------------------------------------- */
+      /* 3. UYGULAMA DURUMU (STATE)                                          */
+      /* ------------------------------------------------------------------- */
+      const state = {
+        activeTimelineId: 'mezoblastik',
+        lineageFilter: 'all', // 'all' | 'CMP' | 'CLP' | 'granulocyte'
+        searchQuery: '',
+        highlightMitosis: false,
+        selectedCellId: null,
+        selectedStageIndex: null,
+        isDark: false
+      };
+
+      /* ------------------------------------------------------------------- */
+      /* 4. DOM REFERANSLARI                                                 */
+      /* ------------------------------------------------------------------- */
+      const dom = {
+        html: document.documentElement,
+        themeToggleBtn: document.getElementById('themeToggleBtn'),
+        themeIcon: document.getElementById('themeIcon'),
+        themeLabel: document.getElementById('themeLabel'),
+        timelineCardsContainer: document.getElementById('timelineCardsContainer'),
+        timelineDetailPanel: document.getElementById('timelineDetailPanel'),
+        filterBtns: document.querySelectorAll('.filter-btn'),
+        mitozToggle: document.getElementById('mitozToggle'),
+        searchInput: document.getElementById('searchInput'),
+        clearSearchBtn: document.getElementById('clearSearchBtn'),
+        resultCountBadge: document.getElementById('resultCountBadge'),
+        tableBody: document.getElementById('hematopoiesisTableBody'),
+        emptyState: document.getElementById('emptyState'),
+        resetFiltersBtn: document.getElementById('resetFiltersBtn'),
+        // Drawer
+        drawerWrapper: document.getElementById('detailDrawerWrapper'),
+        drawerBackdrop: document.getElementById('drawerBackdrop'),
+        drawerPanel: document.getElementById('drawerPanel'),
+        drawerIconBox: document.getElementById('drawerIconBox'),
+        drawerTitle: document.getElementById('drawerTitle'),
+        drawerLineageBadge: document.getElementById('drawerLineageBadge'),
+        drawerSubtitle: document.getElementById('drawerSubtitle'),
+        drawerContent: document.getElementById('drawerContent'),
+        closeDrawerBtn: document.getElementById('closeDrawerBtn'),
+        prevCellBtn: document.getElementById('prevCellBtn'),
+        nextCellBtn: document.getElementById('nextCellBtn')
+      };
+
+      /* ------------------------------------------------------------------- */
+      /* 5. RENK YARDIMCILARI                                                */
+      /* ------------------------------------------------------------------- */
+      const COLOR_MAP = {
+        rose:    { bg: 'bg-rose-100 dark:bg-rose-950/60', text: 'text-rose-600 dark:text-rose-400', border: 'border-rose-200 dark:border-rose-800' },
+        amber:   { bg: 'bg-amber-100 dark:bg-amber-950/60', text: 'text-amber-600 dark:text-amber-400', border: 'border-amber-200 dark:border-amber-800' },
+        orange:  { bg: 'bg-orange-100 dark:bg-orange-950/60', text: 'text-orange-600 dark:text-orange-400', border: 'border-orange-200 dark:border-orange-800' },
+        red:     { bg: 'bg-red-100 dark:bg-red-950/60', text: 'text-red-600 dark:text-red-400', border: 'border-red-200 dark:border-red-800' },
+        purple:  { bg: 'bg-purple-100 dark:bg-purple-950/60', text: 'text-purple-600 dark:text-purple-400', border: 'border-purple-200 dark:border-purple-800' },
+        fuchsia: { bg: 'bg-fuchsia-100 dark:bg-fuchsia-950/60', text: 'text-fuchsia-600 dark:text-fuchsia-400', border: 'border-fuchsia-200 dark:border-fuchsia-800' },
+        teal:    { bg: 'bg-teal-100 dark:bg-teal-950/60', text: 'text-teal-600 dark:text-teal-400', border: 'border-teal-200 dark:border-teal-800' },
+        indigo:  { bg: 'bg-indigo-100 dark:bg-indigo-950/60', text: 'text-indigo-600 dark:text-indigo-400', border: 'border-indigo-200 dark:border-indigo-800' },
+        blue:    { bg: 'bg-blue-100 dark:bg-blue-950/60', text: 'text-blue-600 dark:text-blue-400', border: 'border-blue-200 dark:border-blue-800' },
+        sky:     { bg: 'bg-sky-100 dark:bg-sky-950/60', text: 'text-sky-600 dark:text-sky-400', border: 'border-sky-200 dark:border-sky-800' }
+      };
+
+      function getLineageBadgeClasses(lineage) {
+        if (lineage === 'CMP') {
+          return 'bg-gradient-to-r from-rose-500/15 to-orange-500/15 text-orange-800 dark:text-orange-300 border border-orange-300/80 dark:border-orange-700/70';
+        }
+        return 'bg-gradient-to-r from-blue-500/15 to-indigo-500/15 text-indigo-800 dark:text-indigo-300 border border-indigo-300/80 dark:border-indigo-700/70';
+      }
+
+      /* ------------------------------------------------------------------- */
+      /* 6. TEMA YÖNETİMİ (KARANLIK / AYDINLIK)                              */
+      /* ------------------------------------------------------------------- */
+      function initTheme() {
+        try {
+          const saved = localStorage.getItem('hematopoez_theme');
+          if (saved === 'dark' || (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            state.isDark = true;
+          }
+        } catch (e) {
+          state.isDark = false;
+        }
+        applyTheme();
+      }
+
+      function applyTheme() {
+        if (state.isDark) {
+          dom.html.classList.add('dark');
+          dom.themeLabel.textContent = 'Aydınlık Tema';
+          dom.themeIcon.innerHTML = `<svg class="w-4 h-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke-linecap="round"/></svg>`;
+        } else {
+          dom.html.classList.remove('dark');
+          dom.themeLabel.textContent = 'Karanlık Tema';
+          dom.themeIcon.innerHTML = `<svg class="w-4 h-4 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+        }
+      }
+
+      function toggleTheme() {
+        state.isDark = !state.isDark;
+        try {
+          localStorage.setItem('hematopoez_theme', state.isDark ? 'dark' : 'light');
+        } catch (e) { /* depolama kısıtlı olabilir */ }
+        applyTheme();
+      }
+
+      /* ------------------------------------------------------------------- */
+      /* 7. BÖLÜM 1: İNTRAUTERİN ZAMAN ÇİZELGESİ RENDER                      */
+      /* ------------------------------------------------------------------- */
+      function renderTimeline() {
+        const cardsHtml = INTRAUTERINE_STAGES.map((stage, idx) => {
+          const isActive = stage.id === state.activeTimelineId;
+          const accentStyles = {
+            rose: isActive
+              ? 'border-rose-500 bg-rose-50/80 dark:bg-rose-950/35 ring-2 ring-rose-500/25'
+              : 'border-slate-200 dark:border-slate-800 hover:border-rose-300 dark:hover:border-rose-700 bg-white dark:bg-slate-900',
+            amber: isActive
+              ? 'border-amber-500 bg-amber-50/80 dark:bg-amber-950/35 ring-2 ring-amber-500/25'
+              : 'border-slate-200 dark:border-slate-800 hover:border-amber-300 dark:hover:border-amber-700 bg-white dark:bg-slate-900',
+            indigo: isActive
+              ? 'border-indigo-500 bg-indigo-50/80 dark:bg-indigo-950/35 ring-2 ring-indigo-500/25'
+              : 'border-slate-200 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 bg-white dark:bg-slate-900'
+          }[stage.accent];
+
+          const badgeColor = {
+            rose: 'bg-rose-600 text-white',
+            amber: 'bg-amber-500 text-white',
+            indigo: 'bg-indigo-600 text-white'
+          }[stage.accent];
+
+          const arrowHtml = idx < INTRAUTERINE_STAGES.length - 1
+            ? `<div class="flex items-center justify-center text-slate-400 dark:text-slate-600 py-1 lg:py-0">
+                 <svg class="w-6 h-6 rotate-90 lg:rotate-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                   <path d="M5 12h14m-6-6 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+                 </svg>
+               </div>`
+            : '';
+
+          return `
+            <button
+              type="button"
+              data-stage-id="${stage.id}"
+              class="timeline-card text-left p-4 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${accentStyles}"
+            >
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold tracking-wide ${badgeColor}">
+                    ${stage.number}
+                  </span>
+                  <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">${stage.period}</span>
+                </div>
+                <h3 class="text-base font-bold text-slate-900 dark:text-white">${stage.title}</h3>
+                <p class="text-xs font-semibold text-slate-700 dark:text-slate-300 mt-1">${stage.shortOrgan}</p>
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-400 mt-2.5 leading-relaxed">${stage.summary}</p>
+            </button>
+            ${arrowHtml}
+          `;
+        }).join('');
+
+        dom.timelineCardsContainer.innerHTML = cardsHtml;
+
+        // Tıklama dinleyicileri
+        dom.timelineCardsContainer.querySelectorAll('.timeline-card').forEach(btn => {
+          btn.addEventListener('click', () => {
+            state.activeTimelineId = btn.dataset.stageId;
+            renderTimeline();
+          });
+        });
+
+        // Seçili Evre Detay Paneli
+        const active = INTRAUTERINE_STAGES.find(s => s.id === state.activeTimelineId) || INTRAUTERINE_STAGES[0];
+        dom.timelineDetailPanel.innerHTML = `
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+            <div class="lg:col-span-2 space-y-3.5">
+              <div class="flex flex-wrap items-center gap-2">
+                <h3 class="text-base sm:text-lg font-extrabold text-slate-900 dark:text-white">${active.title}</h3>
+                <span class="px-2.5 py-0.5 rounded-lg text-xs font-semibold bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">
+                  ${active.period}
+                </span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
+                <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/70">
+                  <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Embriyolojik Köken</div>
+                  <p class="text-slate-700 dark:text-slate-300 leading-relaxed">${active.origin}</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/70">
+                  <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1">Baskın Organ(lar)</div>
+                  <p class="text-slate-700 dark:text-slate-300 leading-relaxed">${active.dominantOrgan}</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/70">
+                  <div class="text-[11px] font-bold uppercase tracking-wider text-rose-500 mb-1">Baskın Hemoglobin Tipi</div>
+                  <p class="text-slate-700 dark:text-slate-300 leading-relaxed">${active.hemoglobin}</p>
+                </div>
+                <div class="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/70">
+                  <div class="text-[11px] font-bold uppercase tracking-wider text-indigo-500 mb-1">Üretilen Hücre Profili</div>
+                  <p class="text-slate-700 dark:text-slate-300 leading-relaxed">${active.cellsProduced}</p>
+                </div>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/60 text-xs sm:text-sm">
+                <span class="font-bold text-amber-900 dark:text-amber-300">Klinik Not: </span>
+                <span class="text-amber-950/90 dark:text-amber-200/90 leading-relaxed">${active.clinicalNote}</span>
+              </div>
+            </div>
+
+            <!-- Evre Etimolojisi -->
+            <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-700/70 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
+                  <svg class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                  </svg>
+                  Evre Istılah Etimolojisi
+                </div>
+                <div class="space-y-3">
+                  ${active.etymology.map(item => `
+                    <div class="pb-3 border-b border-slate-100 dark:border-slate-800 last:border-0 last:pb-0">
+                      <div class="text-sm font-bold text-slate-900 dark:text-white">${item.term}</div>
+                      <div class="text-xs font-serif text-indigo-700 dark:text-indigo-300 mt-0.5">${item.root}</div>
+                      <div class="text-xs text-slate-600 dark:text-slate-400 mt-1">${item.meaning}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      /* ------------------------------------------------------------------- */
+      /* 8. FİLTRELEME VE ARAMA                                              */
+      /* ------------------------------------------------------------------- */
+      function normalizeTurkish(str) {
+        return (str || '')
+          .toLocaleLowerCase('tr-TR')
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+      }
+
+      function getFilteredCells() {
+        const q = normalizeTurkish(state.searchQuery.trim());
+        return BLOOD_CELLS.filter(cell => {
+          // Soy filtresi
+          if (state.lineageFilter === 'CMP' && cell.lineage !== 'CMP') return false;
+          if (state.lineageFilter === 'CLP' && cell.lineage !== 'CLP') return false;
+          if (state.lineageFilter === 'granulocyte' && !cell.isGranulocyte) return false;
+
+          // Arama filtresi
+          if (!q) return true;
+          const haystack = normalizeTurkish([
+            cell.name,
+            cell.shortLabel,
+            cell.lineage,
+            cell.lineageFull,
+            cell.originPath,
+            cell.mitosisLimit,
+            cell.maturationSite,
+            cell.functionText,
+            ...cell.stages.map(s => s.name)
+          ].join(' '));
+
+          return haystack.includes(q);
+        });
+      }
+
+      function updateFilterButtonsUI() {
+        dom.filterBtns.forEach(btn => {
+          const isSelected = btn.dataset.filter === state.lineageFilter;
+          const base = 'filter-btn px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer border ';
+          if (isSelected) {
+            if (btn.dataset.filter === 'CMP' || btn.dataset.filter === 'granulocyte') {
+              btn.className = base + 'bg-orange-600 text-white border-orange-600 shadow-sm';
+            } else if (btn.dataset.filter === 'CLP') {
+              btn.className = base + 'bg-indigo-600 text-white border-indigo-600 shadow-sm';
+            } else {
+              btn.className = base + 'bg-slate-900 text-white border-slate-900 dark:bg-white dark:text-slate-900 dark:border-white shadow-sm';
+            }
+          } else {
+            btn.className = base + 'bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-300 dark:border-slate-700';
+          }
+        });
+      }
+
+      /* ------------------------------------------------------------------- */
+      /* 9. BÖLÜM 3: ETKİLEŞİMLİ HEMATOPOEZ TABLOSU RENDER                   */
+      /* ------------------------------------------------------------------- */
+      function renderTable() {
+        updateFilterButtonsUI();
+        const filtered = getFilteredCells();
+        dom.resultCountBadge.textContent = `${filtered.length} / ${BLOOD_CELLS.length} soy gösteriliyor`;
+
+        if (filtered.length === 0) {
+          dom.tableBody.innerHTML = '';
+          dom.emptyState.classList.remove('hidden');
+          return;
+        }
+        dom.emptyState.classList.add('hidden');
+
+        dom.tableBody.innerHTML = filtered.map(cell => {
+          const c = COLOR_MAP[cell.colorTheme] || COLOR_MAP.indigo;
+          const lineageClasses = getLineageBadgeClasses(cell.lineage);
+
+          // Olgunlaşma basamakları (oklarla bağlı tıklanabilir etiketler)
+          const stagesHtml = cell.stages.map((stage, sIdx) => {
+            let chipClasses = '';
+            let indicator = '';
+
+            if (stage.status === 'last-dividing') {
+              chipClasses = state.highlightMitosis
+                ? 'mitoz-highlight-active bg-amber-100 dark:bg-amber-900/80 text-amber-950 dark:text-amber-100 border-2 border-amber-500 font-bold'
+                : 'bg-amber-50 dark:bg-amber-950/40 text-amber-900 dark:text-amber-200 border border-amber-400 dark:border-amber-600 font-semibold hover:bg-amber-100 dark:hover:bg-amber-900/60';
+              indicator = `<span class="text-amber-500 text-xs leading-none">&#9733;</span>`;
+            } else if (stage.status === 'dividing') {
+              chipClasses = (state.highlightMitosis ? 'mitoz-dimmed ' : '') +
+                'bg-emerald-50/80 dark:bg-emerald-950/30 text-emerald-900 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800/70 hover:bg-emerald-100 dark:hover:bg-emerald-900/50';
+              indicator = `<span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0"></span>`;
+            } else {
+              chipClasses = (state.highlightMitosis ? 'mitoz-dimmed ' : '') +
+                'bg-slate-100 dark:bg-slate-800/90 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-200/80 dark:hover:bg-slate-700';
+              indicator = `<span class="w-2 h-2 rounded-full bg-slate-400 dark:bg-slate-500 shrink-0"></span>`;
+            }
+
+            const arrow = sIdx < cell.stages.length - 1
+              ? `<span class="text-slate-300 dark:text-slate-600 select-none text-xs">&rarr;</span>`
+              : '';
+
+            return `
+              <button
+                type="button"
+                data-cell-id="${cell.id}"
+                data-stage-index="${sIdx}"
+                title="${stage.note}"
+                class="stage-chip inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs transition-all cursor-pointer ${chipClasses}"
+              >
+                ${indicator}
+                <span>${stage.name}</span>
+              </button>
+              ${arrow}
+            `;
+          }).join('');
+
+          return `
+            <tr
+              data-row-cell-id="${cell.id}"
+              class="cell-row group hover:bg-slate-50/90 dark:hover:bg-slate-800/40 transition-colors cursor-pointer align-top"
+            >
+              <!-- 1. Olgun Hücre -->
+              <td class="py-4 px-4">
+                <div class="flex items-start gap-3">
+                  <div class="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${c.bg} ${c.text} ${c.border}">
+                    ${cell.iconSvg}
+                  </div>
+                  <div>
+                    <div class="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                      ${cell.name}
+                    </div>
+                    <div class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">${cell.shortLabel}</div>
+                    ${cell.isGranulocyte ? `<span class="inline-block mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold bg-orange-100/80 dark:bg-orange-950/60 text-orange-700 dark:text-orange-300">Granülosit</span>` : ''}
+                  </div>
+                </div>
+              </td>
+
+              <!-- 2. Ana Soy -->
+              <td class="py-4 px-3">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold ${lineageClasses}">
+                  ${cell.lineage}
+                </span>
+                <div class="text-[11px] text-slate-500 dark:text-slate-400 mt-1 leading-tight">
+                  ${cell.lineage === 'CMP' ? 'Ortak Miyeloid Progenitör' : 'Ortak Lenfoid Progenitör'}
+                </div>
+              </td>
+
+              <!-- 3. Embriyolojik Köken -->
+              <td class="py-4 px-3 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                <span class="font-medium text-slate-800 dark:text-slate-200">${cell.originPath}</span>
+              </td>
+
+              <!-- 4. Olgunlaşma Basamakları -->
+              <td class="py-4 px-4">
+                <div class="flex flex-wrap items-center gap-1.5">
+                  ${stagesHtml}
+                </div>
+              </td>
+
+              <!-- 5. Mitoz Sınırı -->
+              <td class="py-4 px-3">
+                <div class="inline-flex items-start gap-1.5 px-2.5 py-1.5 rounded-xl text-xs font-semibold ${state.highlightMitosis ? 'bg-amber-100 dark:bg-amber-900/70 text-amber-950 dark:text-amber-100 border border-amber-400 shadow-sm' : 'bg-amber-50/70 dark:bg-amber-950/30 text-amber-900 dark:text-amber-200 border border-amber-200/80 dark:border-amber-800/50'}">
+                  <span class="text-amber-500 shrink-0">&#9733;</span>
+                  <span>${cell.mitosisLimit}</span>
+                </div>
+              </td>
+
+              <!-- 6. Olgunlaşma Yeri -->
+              <td class="py-4 px-3 text-xs font-medium text-slate-700 dark:text-slate-300 leading-relaxed">
+                ${cell.maturationSite}
+              </td>
+
+              <!-- 7. Temel Görev -->
+              <td class="py-4 px-4 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                ${cell.functionText}
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+        // Satır tıklama olayları
+        dom.tableBody.querySelectorAll('.cell-row').forEach(row => {
+          row.addEventListener('click', (e) => {
+            const chip = e.target.closest('.stage-chip');
+            if (chip) {
+              openDrawer(chip.dataset.cellId, parseInt(chip.dataset.stageIndex, 10));
+            } else {
+              openDrawer(row.dataset.rowCellId, null);
+            }
+          });
+        });
+      }
+
+      /* ------------------------------------------------------------------- */
+      /* 10. BÖLÜM 4: DETAY VE ETİMOLOJİ ÇEKMECESİ (MODAL / YAN PANEL)       */
+      /* ------------------------------------------------------------------- */
+      function openDrawer(cellId, stageIndex = null) {
+        const cell = BLOOD_CELLS.find(c => c.id === cellId);
+        if (!cell) return;
+
+        state.selectedCellId = cellId;
+        state.selectedStageIndex = stageIndex;
+        renderDrawerContent(cell, stageIndex);
+
+        dom.drawerWrapper.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+
+        // Animasyon karesi
+        requestAnimationFrame(() => {
+          dom.drawerBackdrop.classList.remove('opacity-0');
+          dom.drawerBackdrop.classList.add('opacity-100');
+          dom.drawerPanel.classList.remove('translate-x-full');
+          dom.drawerPanel.classList.add('translate-x-0');
+        });
+      }
+
+      function closeDrawer() {
+        dom.drawerBackdrop.classList.remove('opacity-100');
+        dom.drawerBackdrop.classList.add('opacity-0');
+        dom.drawerPanel.classList.remove('translate-x-0');
+        dom.drawerPanel.classList.add('translate-x-full');
+
+        setTimeout(() => {
+          dom.drawerWrapper.classList.add('hidden');
+          document.body.classList.remove('overflow-hidden');
+        }, 280);
+      }
+
+      function navigateDrawer(direction) {
+        const idx = BLOOD_CELLS.findIndex(c => c.id === state.selectedCellId);
+        if (idx === -1) return;
+        const nextIdx = (idx + direction + BLOOD_CELLS.length) % BLOOD_CELLS.length;
+        state.selectedCellId = BLOOD_CELLS[nextIdx].id;
+        state.selectedStageIndex = null;
+        renderDrawerContent(BLOOD_CELLS[nextIdx], null);
+        dom.drawerContent.scrollTop = 0;
+      }
+
+      function renderDrawerContent(cell, highlightStageIndex) {
+        const c = COLOR_MAP[cell.colorTheme] || COLOR_MAP.indigo;
+
+        dom.drawerIconBox.className = `w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border ${c.bg} ${c.text} ${c.border}`;
+        dom.drawerIconBox.innerHTML = cell.iconSvg;
+        dom.drawerTitle.textContent = cell.name;
+        dom.drawerSubtitle.textContent = `${cell.shortLabel} • Olgunlaşma Yeri: ${cell.maturationSite}`;
+        dom.drawerLineageBadge.className = `px-2.5 py-0.5 rounded-full text-xs font-bold ${getLineageBadgeClasses(cell.lineage)}`;
+        dom.drawerLineageBadge.textContent = cell.lineage;
+
+        // Tam soy yolu adımları
+        const fullPathwayHtml = `
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">Splanknik Mezoderm</span>
+            <span class="text-slate-400">&rarr;</span>
+            <span class="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium">HSC</span>
+            <span class="text-slate-400">&rarr;</span>
+            <span class="px-2.5 py-1 rounded-lg font-bold ${getLineageBadgeClasses(cell.lineage)}">${cell.lineage}</span>
+            ${cell.stages.map((s, i) => `
+              <span class="text-slate-400">&rarr;</span>
+              <span class="px-2.5 py-1 rounded-lg ${
+                i === highlightStageIndex
+                  ? 'bg-indigo-600 text-white font-bold shadow-sm'
+                  : s.status === 'last-dividing'
+                    ? 'bg-amber-100 dark:bg-amber-900/60 text-amber-900 dark:text-amber-200 border border-amber-400 font-semibold'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'
+              }">${s.name}</span>
+            `).join('')}
+          </div>
+        `;
+
+        // Basamak bazlı morfolojik notlar
+        const stagesDetailHtml = cell.stages.map((s, i) => {
+          const isClicked = i === highlightStageIndex;
+          const statusLabel = s.status === 'last-dividing'
+            ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 dark:bg-amber-900/70 text-amber-800 dark:text-amber-200 border border-amber-400">&#9733; Son Bölünebilen Öncül</span>'
+            : s.status === 'dividing'
+              ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300">Mitoz Aktif</span>'
+              : '<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">Mitoz Bitti</span>';
+
+          return `
+            <div class="p-3 rounded-xl border transition-all ${
+              isClicked
+                ? 'border-indigo-500 bg-indigo-50/70 dark:bg-indigo-950/40 ring-2 ring-indigo-500/20'
+                : s.status === 'last-dividing'
+                  ? 'border-amber-300 dark:border-amber-700/80 bg-amber-50/50 dark:bg-amber-950/20'
+                  : 'border-slate-200/80 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-800/40'
+            }">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <span class="text-sm font-bold text-slate-900 dark:text-white">${i + 1}. ${s.name}</span>
+                ${statusLabel}
+              </div>
+              <p class="text-xs text-slate-600 dark:text-slate-300 mt-1.5 leading-relaxed">${s.note}</p>
+            </div>
+          `;
+        }).join('');
+
+        dom.drawerContent.innerHTML = `
+          <!-- 1. Tam Soy Yolu -->
+          <section>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">Embriyolojik Soy Yolu</h4>
+            <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/70">
+              ${fullPathwayHtml}
+            </div>
+          </section>
+
+          <!-- 2. Mitoz ve Farklılaşma Kuralı -->
+          <section class="p-4 rounded-2xl bg-amber-50/80 dark:bg-amber-950/30 border border-amber-300/80 dark:border-amber-700/70">
+            <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300 mb-1.5">
+              <span class="text-base leading-none">&#9733;</span>
+              Mitoz ve Farklılaşma Kuralı
+            </div>
+            <p class="text-sm font-bold text-amber-950 dark:text-amber-100 mb-1">
+              Sınır Öncül: ${cell.mitosisLimit}
+            </p>
+            <p class="text-xs sm:text-sm text-amber-950/90 dark:text-amber-200/90 leading-relaxed">
+              ${cell.mitosisSummary}
+            </p>
+          </section>
+
+          <!-- 3. Olgunlaşma Basamakları Detayı -->
+          <section>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">Olgunlaşma Basamakları (${cell.stages.length} Aşama)</h4>
+            <div class="space-y-2.5">
+              ${stagesDetailHtml}
+            </div>
+          </section>
+
+          <!-- 4. Histolojik / Morfolojik Ayırt Edici Özellikler -->
+          <section>
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">Histolojik &amp; Morfolojik Özellikler</h4>
+            <div class="grid grid-cols-1 gap-2.5 text-xs sm:text-sm">
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/70">
+                <strong class="text-slate-900 dark:text-white">Çekirdek Yapısı:</strong>
+                <span class="text-slate-600 dark:text-slate-300"> ${cell.histology.nucleus}</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/70">
+                <strong class="text-slate-900 dark:text-white">Sitoplazma &amp; Granüller:</strong>
+                <span class="text-slate-600 dark:text-slate-300"> ${cell.histology.cytoplasm}</span>
+              </div>
+              <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200/80 dark:border-slate-700/70">
+                <strong class="text-slate-900 dark:text-white">Ayırt Edici Klinik / Biyolojik İpucu:</strong>
+                <span class="text-slate-600 dark:text-slate-300"> ${cell.histology.special}</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. Istılah Etimolojisi -->
+          <section>
+            <div class="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400 mb-2.5">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+              </svg>
+              Istılah Etimolojisi (Eski Yunanca &amp; Latince Kökler)
+            </div>
+            <div class="space-y-2.5">
+              ${cell.etymology.map(et => `
+                <div class="p-3.5 rounded-xl bg-indigo-50/50 dark:bg-indigo-950/30 border border-indigo-200/70 dark:border-indigo-800/60">
+                  <div class="text-sm font-bold text-slate-900 dark:text-white">${et.term}</div>
+                  <div class="text-xs sm:text-sm font-serif text-indigo-800 dark:text-indigo-300 mt-0.5">${et.root}</div>
+                  <div class="text-xs text-slate-600 dark:text-slate-300 mt-1">${et.meaning}</div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+        `;
+      }
+
+      /* ------------------------------------------------------------------- */
+      /* 11. OLAY DİNLEYİCİLERİ VE BAŞLATMA                                  */
+      /* ------------------------------------------------------------------- */
+      function bindEvents() {
+        // Tema geçişi
+        dom.themeToggleBtn.addEventListener('click', toggleTheme);
+
+        // Soy filtreleri
+        dom.filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            state.lineageFilter = btn.dataset.filter;
+            renderTable();
+          });
+        });
+
+        // Mitoz sınırı vurgusu
+        dom.mitozToggle.addEventListener('change', (e) => {
+          state.highlightMitosis = e.target.checked;
+          renderTable();
+        });
+
+        // Arama kutusu
+        dom.searchInput.addEventListener('input', (e) => {
+          state.searchQuery = e.target.value;
+          dom.clearSearchBtn.classList.toggle('hidden', state.searchQuery.length === 0);
+          renderTable();
+        });
+
+        dom.clearSearchBtn.addEventListener('click', () => {
+          state.searchQuery = '';
+          dom.searchInput.value = '';
+          dom.clearSearchBtn.classList.add('hidden');
+          dom.searchInput.focus();
+          renderTable();
+        });
+
+        dom.resetFiltersBtn.addEventListener('click', () => {
+          state.lineageFilter = 'all';
+          state.searchQuery = '';
+          dom.searchInput.value = '';
+          dom.clearSearchBtn.classList.add('hidden');
+          renderTable();
+        });
+
+        // Çekmece kontrolleri
+        dom.closeDrawerBtn.addEventListener('click', closeDrawer);
+        dom.drawerBackdrop.addEventListener('click', closeDrawer);
+        dom.prevCellBtn.addEventListener('click', () => navigateDrawer(-1));
+        dom.nextCellBtn.addEventListener('click', () => navigateDrawer(1));
+
+        // Klavye kısayolları (Esc ile kapatma, ok tuşları ile çekmece içi gezinme)
+        document.addEventListener('keydown', (e) => {
+          if (dom.drawerWrapper.classList.contains('hidden')) return;
+          if (e.key === 'Escape') closeDrawer();
+          if (e.key === 'ArrowLeft') navigateDrawer(-1);
+          if (e.key === 'ArrowRight') navigateDrawer(1);
+        });
+      }
+
+      // Uygulamayı başlat
+      initTheme();
+      renderTimeline();
+      renderTable();
+      bindEvents();
+    })();
+  </script>
+</body>
+</html>
